@@ -1,0 +1,188 @@
+[gd_scene load_steps=8 format=2]
+
+[sub_resource type="Gradient" id=6]
+
+offsets = PoolRealArray( 0, 0.389058, 0.609423, 0.785714, 1 )
+colors = PoolColorArray( 0.583333, 0.814453, 1, 0, 0.00882056, 0.433966, 0.65625, 0.27502, 0.438172, 0.907825, 1, 0.21, 0, 0.669403, 0.800781, 0.26502, 0, 0.173553, 0.472656, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+
+flags = 4
+gradient = SubResource( 6 )
+width = 2048
+
+[sub_resource type="Curve" id=3]
+
+min_value = 0.0
+max_value = 1.0
+bake_resolution = 100
+_data = [ Vector2( 0, 0.0686035 ), 0.0, 1.82394, 0, 0, Vector2( 1, 0 ), -5.39367, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+
+flags = 4
+width = 2048
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = false
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 0, -9.8, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 1.33123e-43
+angular_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 7 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Hue Variation", "Scale" ]
+
+[sub_resource type="SpatialMaterial" id=1]
+
+render_priority = 0
+flags_transparent = true
+flags_unshaded = false
+flags_vertex_lighting = false
+flags_no_depth_test = false
+flags_use_point_size = false
+flags_world_triplanar = false
+flags_fixed_size = false
+flags_albedo_tex_force_srgb = false
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = false
+params_diffuse_mode = 0
+params_specular_mode = 0
+params_blend_mode = 0
+params_cull_mode = 0
+params_depth_draw_mode = 0
+params_line_width = 1.0
+params_point_size = 1.0
+params_billboard_mode = 0
+params_grow = false
+params_use_alpha_scissor = false
+albedo_color = Color( 1, 1, 1, 1 )
+metallic = 0.0
+metallic_specular = 0.5
+metallic_texture_channel = 0
+roughness = 0.0
+roughness_texture_channel = 0
+emission_enabled = false
+normal_enabled = false
+rim_enabled = false
+clearcoat_enabled = false
+anisotropy_enabled = false
+ao_enabled = false
+depth_enabled = false
+subsurf_scatter_enabled = false
+transmission_enabled = true
+transmission = Color( 0.485856, 0.570379, 0.621094, 1 )
+refraction_enabled = true
+refraction_scale = 0.01
+refraction_texture_channel = 0
+detail_enabled = false
+uv1_scale = Vector3( 1, 1, 1 )
+uv1_offset = Vector3( 0, 0, 0 )
+uv1_triplanar = false
+uv1_triplanar_sharpness = 1.0
+uv2_scale = Vector3( 1, 1, 1 )
+uv2_offset = Vector3( 0, 0, 0 )
+uv2_triplanar = false
+uv2_triplanar_sharpness = 1.0
+proximity_fade_enable = false
+distance_fade_enable = false
+_sections_unfolded = [ "Flags", "Parameters", "Refraction", "Transmission" ]
+
+[sub_resource type="SphereMesh" id=2]
+
+material = SubResource( 1 )
+radius = 1.0
+height = 4.0
+radial_segments = 5
+rings = 5
+is_hemisphere = false
+
+[node name="water" type="Spatial"]
+
+[node name="water" type="Particles" parent="." index="0"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.871424, 4.48099, -1.36792 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+emitting = true
+amount = 100
+lifetime = 2.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_aabb = AABB( -4, -4, -4, 8, 8, 8 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 5 )
+draw_passes = 1
+draw_pass_1 = SubResource( 2 )
+_sections_unfolded = [ "Draw Passes", "Drawing", "Process Material" ]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="1"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.21345, 3.62354, -2.97517 )
+layers = 1
+light_color = Color( 1, 1, 1, 1 )
+light_energy = 1.0
+light_indirect_energy = 1.0
+light_negative = false
+light_specular = 0.5
+light_bake_mode = 1
+light_cull_mask = -1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_bias = 0.1
+shadow_contact = 0.0
+shadow_reverse_cull_face = false
+editor_only = false
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.1
+directional_shadow_split_2 = 0.2
+directional_shadow_split_3 = 0.5
+directional_shadow_blend_splits = false
+directional_shadow_normal_bias = 0.8
+directional_shadow_bias_split_scale = 0.25
+directional_shadow_depth_range = 0
+directional_shadow_max_distance = 200.0
+
+

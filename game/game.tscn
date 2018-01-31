@@ -1,6 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://characters/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://chemistry/wind.tscn" type="PackedScene" id=2]
+[ext_resource path="res://chemistry/water.tscn" type="PackedScene" id=3]
+[ext_resource path="res://chemistry/fire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://environment/forest/pine.gltf" type="PackedScene" id=5]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -58,9 +62,9 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo", "UV1" ]
 
-[sub_resource type="PlaneShape" id=3]
+[sub_resource type="BoxShape" id=8]
 
-plane = Plane( 0, 1, 0, 0 )
+extents = Vector3( 50, 0.1, 50 )
 
 [sub_resource type="CubeMesh" id=4]
 
@@ -84,11 +88,10 @@ subdivide_depth = 0
 
 extents = Vector3( 10, 4, 1 )
 
-[node name="game" type="Spatial" index="0"]
+[node name="game" type="Spatial"]
 
 [node name="floor" type="StaticBody" parent="." index="0"]
 
-editor/display_folded = true
 input_ray_pickable = true
 input_capture_on_drag = false
 collision_layer = 1
@@ -117,12 +120,12 @@ _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="floor" index="1"]
 
-shape = SubResource( 3 )
+shape = SubResource( 8 )
 disabled = false
+_sections_unfolded = [ "Transform" ]
 
 [node name="test_cube" type="RigidBody" parent="." index="1"]
 
-editor/display_folded = true
 transform = Transform( 0.692428, 0.612305, -0.381612, -0.721487, 0.587642, -0.366241, 0, 0.528923, 0.84867, 0, 4.33565, -10.8233 )
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -202,11 +205,8 @@ _sections_unfolded = [ "Directional Shadow", "Light", "Shadow" ]
 
 [node name="walls" type="Spatial" parent="." index="4"]
 
-editor/display_folded = true
-
 [node name="StaticBody" type="StaticBody" parent="walls" index="0"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8256, 4, 14.3364 )
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -241,7 +241,6 @@ disabled = false
 
 [node name="StaticBody3" type="StaticBody" parent="walls" index="1"]
 
-editor/display_folded = true
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 23.1753, 4, 2.99926 )
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -311,7 +310,6 @@ disabled = false
 
 [node name="StaticBody2" type="StaticBody" parent="walls" index="3"]
 
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8724, 4, 14.3364 )
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -346,7 +344,6 @@ disabled = false
 
 [node name="StaticBody5" type="StaticBody" parent="walls" index="4"]
 
-editor/display_folded = true
 transform = Transform( -0.0042043, 0, 0.999991, 0, 1, 0, -0.999991, 0, -0.0042043, -14.8724, 4, 4.57658 )
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -413,5 +410,23 @@ _sections_unfolded = [ "Transform" ]
 
 shape = SubResource( 7 )
 disabled = false
+
+[node name="wind" parent="." index="5" instance=ExtResource( 2 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 35 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="water" parent="." index="6" instance=ExtResource( 3 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 35 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="fire" parent="." index="7" instance=ExtResource( 4 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 35 )
+
+[node name="Scene Root" parent="." index="8" instance=ExtResource( 5 )]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84747, -0.385263, -8.81502 )
 
 
