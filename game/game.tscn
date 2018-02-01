@@ -62,7 +62,7 @@ proximity_fade_enable = false
 distance_fade_enable = false
 _sections_unfolded = [ "Albedo", "UV1" ]
 
-[sub_resource type="BoxShape" id=8]
+[sub_resource type="BoxShape" id=3]
 
 extents = Vector3( 50, 0.1, 50 )
 
@@ -120,7 +120,7 @@ _sections_unfolded = [ "Transform", "material" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="floor" index="1"]
 
-shape = SubResource( 8 )
+shape = SubResource( 3 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 

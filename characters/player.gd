@@ -24,6 +24,7 @@ func _physics_process(dt):
 	apply_velocity(dt)
 	apply_rotation(dt)
 	input_acceleration(dt)
+	update_animation()
 
 func setup_camera():
 	camera = InterpolatedCamera.new()
@@ -84,6 +85,14 @@ func input_acceleration(dt):
 		on_start_jump()
 	else:
 		acceleration.y = 0
+
+func update_animation():
+	if velocity.length_squared() > 0 and not $model/AnimationPlayer.current_animation:
+		$model/AnimationPlayer.play("default")
+	elif velocity.length_squared() <= 0 and $model/AnimationPlayer.current_animation:
+		$model/AnimationPlayer.stop()
+
+	$model/AnimationPlayer.playback_speed = velocity.length() / SPEED
 
 func on_start_jump():
 	pass
